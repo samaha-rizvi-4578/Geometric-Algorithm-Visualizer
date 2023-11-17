@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<title>Algorithm Visualizer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<body>
+    <div class="w3-bar w3-theme">
+        <a href="index.html" class="w3-bar-item w3-button w3-padding-16">Home</a>
+        <a href="/convexHull/Convex.html" class="w3-bar-item w3-button w3-padding-16">Convex hull</a>
+        <a href="/shortestPath/shortest.html" class="w3-bar-item w3-button w3-padding-16">Shortest Path</a>
+        <a href="Help.html" class="w3-bar-item w3-button w3-padding-16">Help</a>
+        <a href="About.html" class="w3-bar-item w3-button w3-padding-16">About</a>
+    </div>
+    <!-- Header -->
+    <header class="w3-container w3-theme w3-padding" id="myHeader" style="min-height:300px">
+        <!-- <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i>  -->
+        <div class="w3-center">
+            <br><br>
+            <h4>Enjoy the new way of studying algorithms</h4>
+            <h1 class="w3-xxxlarge w3-animate-bottom">Line Intersection</h1>
+            <h4>Choose from below algorithms to get started</h4>
+        </div>
+    </header>
+    <div class="w3-row-padding w3-center w3-margin-top w3-margin-bottom">
+        <div class="w3-half">
+            <div class="w3-card w3-container" style="min-height:460px">
+                <h3>Brute Force</h3>
+                <br>
+                <img src="/convexHull/images/hull1.png" height="200px" width="400px">
+                <p>For all pairs of points p and q in P</p>
+                <p>compute ccw(p, q, x) for all other x in P</p>
+                <p>p-q is on hull if all values positive</p>
+                <p>Time Complexity:O(N^3) </p>
+                <p><a href="/convexHull/bruteForce.html"><button class="w3-button w3-theme">Click Here to Get Started</button></a></p>
+            </div>
+        </div>
+        <div class="w3-half">
+            <div class="w3-card w3-container" style="min-height:460px">
+                <h3>Jarvis March</h3>
+                <br>
+                <img src="/convexHull/images/hull2.png" height="200px" width="400px">
+                <p>Start with point with smallest y-coordinate</p>
+                <p>compute angle between current point and all remaining points.</p>
+                <p>Pick smallest angle larger than current angle.</p>
+                <p>Time Complexity:O(N) per iteration.</p>
+                <p><a href="/convexHull/jarvisMarch.html"><button class="w3-button w3-theme">Click Here to Get Started</button></a></p>
+            </div>
+        </div>
+        <div class="w3-half">
+            <div class="w3-card w3-container" style="min-height:460px">
+                <h3>Graham Scan</h3>
+                <br>
+                <img src="/convexHull/images/hull3.png" height="200px" width="400px">
+                <p>Choose point p with smallest y-coordinate.</p>
+                <p>Sort points by polar angle with p to get simple polygon.</p>
+                <p>Consider points in order, and discard those that
+                    would create a clockwise turn.</p>
+                <p>Time Complexity: O(N log N) for sort and O(N) for rest.</p>
+                <p><a href="/convexHull/grahamScan.html"><button class="w3-button w3-theme">Click Here to Get Started</button></a></p>
+            </div>
+        </div>
+        <div class="w3-half">
+            <div class="w3-card w3-container" style="min-height:460px">
+                <h3>Quick Hull</h3>
+                <br>
+                <img src="/convexHull/images/hull4.png" height="200px" width="400px">
+                <p>Choose a quadrilateral Q or rectangle R with 4 points as corners.</p>
+                <p>Any point inside cannot be on hull</p>
+                 <p>4 ccw tests for quadrilateral. 4 comparisons for rectangle</p>
+                 <p>Time Complexity: O(N^t)</p>
+                <p><a href="/convexHull/quickHull.html"><button class="w3-button w3-theme">Click Here to Get Started</button></a></p>
+            </div>
+        </div>
+        <div class="w3-half">
+            <div class="w3-card w3-container" style="min-height:460px">
+                <h3>Monotone Chain</h3>
+                <br>
+                <img src="/convexHull/images/hull5.png" height="200px" width="400px">
+                <p>Find leftmost (A) and rightmost (B) points, A with lowest Y and B with highest Y.</p>
+                <p>Draw line AB to split points into sets S1 (above) and S2 (below).</p>
+                <p>Sort points by x-coordinate</p>
+                <p>Add points to S1 if clockwise oriented to the line between A and the current point.
+                    Add points to S2 if counterclockwise oriented to the line between A and the current point.</p>
+                    <p>Time Complexity: Sorting O(n log n); Hull O(N)</p>
+                <p><a href="/convexHull/MonotoneChain.html"><button class="w3-button w3-theme">Click Here to Get Started</button></a></p>
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <br>
+    <!-- Footer -->
+    <footer class="w3-container w3-theme-dark w3-padding-16">
+        <h3>Credits:</h3>
+        <h4>21k-3377, 21k-4578, 21k-4897</h4>
+        <h4>Dr.Fahad Sherwani</h4>
+        <h4>Design and Analysis of Algorithms</h4>
+        <p>Source Code: <a href="https://github.com/samaha-rizvi-4578/Geometric-Algorithm-Visualizer"
+                target="_blank">Github Repository</a></p>
+        <div style="position:relative;bottom:55px;" class="w3-tooltip w3-right">
+            <span class="w3-text w3-theme-light w3-padding">Go To Top</span>
+            <a class="w3-text-white" href="#myHeader"><span class="w3-xlarge">
+                    <i class="fa fa-chevron-circle-up"></i></span></a>
+        </div>
+    </footer>
+    <!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
+    <script>
+        // Side navigation
+        function w3_open() {
+            var x = document.getElementById("mySidebar");
+            x.style.width = "100%";
+            x.style.fontSize = "40px";
+            x.style.paddingTop = "10%";
+            x.style.display = "block";
+        }
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+
+        // Tabs
+        function openCity(evt, cityName) {
+            var i;
+            var x = document.getElementsByClassName("city");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            var activebtn = document.getElementsByClassName("testbtn");
+            for (i = 0; i < x.length; i++) {
+                activebtn[i].className = activebtn[i].className.replace(" w3-dark-grey", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " w3-dark-grey";
+        }
+
+        var mybtn = document.getElementsByClassName("testbtn")[0];
+        mybtn.click();
+
+        // Accordions
+        function myAccFunc(id) {
+            var x = document.getElementById(id);
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+
+        // Slideshows
+        var slideIndex = 1;
+
+        function plusDivs(n) {
+            slideIndex = slideIndex + n;
+            showDivs(slideIndex);
+        }
+
+        function showDivs(n) {
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = x.length };
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex - 1].style.display = "block";
+        }
+
+        showDivs(1);
+
+        // Progress Bars
+        function move() {
+            var elem = document.getElementById("myBar");
+            var width = 5;
+            var id = setInterval(frame, 10);
+            function frame() {
+                if (width == 100) {
+                    clearInterval(id);
+                } else {
+                    width++;
+                    elem.style.width = width + '%';
+                    elem.innerHTML = width * 1 + '%';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

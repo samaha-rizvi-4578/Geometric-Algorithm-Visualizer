@@ -1,20 +1,57 @@
 var width = 600; // Define the width of the SVG visualization
 var height = 400; // Define the height of the SVG visualization
 var points = []; // Array to store the generated points
-var speed = 3; // Default speed for visualization
+var hull = []; // Array to store the convex hull points
 
+// Set the speed variable based on the initial value of the speed input
+var speed = parseInt(document.getElementById("speed").value) || 3;
+
+// Function to generate points
 function generatePoints() {
-    // Generate a set of random points
-    for (let i = 0; i < 100; i++) {
+    var numPoints = parseInt(document.getElementById("numPoints").value) || 100;
+
+    points = [];
+    for (let i = 0; i < numPoints; i++) {
         let x = Math.random() * width;
         let y = Math.random() * height;
-        points.push({x: x, y: y});
+        points.push({ x: x, y: y });
     }
+    visualizePoints(); // Call a function to visualize the generated points
 }
 
+// Function to visualize points
+function visualizePoints() {
+    // Visualize the points
+    var colorPoints = d3.select("#colorPoints").node().value;
 
+    // Create an SVG and draw the points
+    var svg = d3.select("#visualization")
+        .attr("width", width)
+        .attr("height", height);
+
+    svg.selectAll("circle")
+        .data(points)
+        .enter().append("circle")
+        .attr("r", 3)
+        .attr("cx", function (d) { return d.x; })
+        .attr("cy", function (d) { return d.y; })
+        .attr("fill", colorPoints);
+}
+
+// Function to visualize the convex hull
 function visualizeConvexHull() {
-    let hull = [];
+    // Clear previous visualization
+    d3.select("#visualization").selectAll("*").remove();
+
+    hull = bruteForceConvexHull(points);
+
+    // Visualize the convex hull
+    visualizeHull();
+}
+
+// Function for the brute-force convex hull
+function bruteForceConvexHull(points) {
+    var hull = [];
 
     // Iterate through all pairs of points
     for (let i = 0; i < points.length; i++) {
@@ -42,9 +79,10 @@ function visualizeConvexHull() {
         }
     }
 
-    // Now you need to visualize the edges in hull array using your preferred library
+    return hull;
 }
 
+// Function to check if points are on the same side
 function checkSameSide(x1, y1, x2, y2, x, y) {
     let a = -(y2 - y1);
     let b = x2 - x1;
@@ -54,15 +92,43 @@ function checkSameSide(x1, y1, x2, y2, x, y) {
     return d > 0;
 }
 
+// Function to visualize the hull
+function visualizeHull() {
+    var colorHull = d3.select("#colorHull").node().value;
+    var colorPoints = d3.select("#colorPoints").node().value;
 
-function displayTotalPoints() {
-    // Add code to calculate and display the total number of points
+    // Create an SVG and draw the points
+    var svg = d3.select("#visualization")
+        .attr("width", width)
+        .attr("height", height);
+
+    svg.selectAll("circle")
+        .data(points)
+        .enter().append("circle")
+        .attr("r", 3)
+        .attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; })
+        .attr("fill", colorPoints);
+
+    // Draw the edges of the convex hull
+    svg.selectAll("line")
+        .data(hull)
+        .enter().append("line")
+        .attr("x1", function(d) { return d[0].x; })
+        .attr("y1", function(d) { return d[0].y; })
+        .attr("x2", function(d) { return d[1].x; })
+        .attr("y2", function(d) { return d[1].y; })
+        .style("stroke", colorHull);
 }
 
+// Update the speed variable when the speed input changes
+document.getElementById("speed").addEventListener("input", function () {
+    speed = parseInt(this.value) || 3;
+});
+
+// Function to display points within the convex hull
 function displayPointsInHull() {
-    // Add code to calculate and display the points within the convex hull
+    console.log("Points within the convex hull: ", hull);
 }
 
-// Other utility functions for convex hull algorithm can be implemented here
-
-// You can use D3.js or any other library for visualization and interactions
+// ... (rest of the existing code)
