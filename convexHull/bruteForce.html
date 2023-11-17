@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Convex Hull Visualizer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <script src="bruteforce.js"></script>
+</head>
+<body>
+    <div id="container">
+        <h2 id="heading">Brute Force Convex Hull</h2>
+        <div id="buttons">
+            <button onclick="generatePoints()">Generate Points</button>
+            <button onclick="visualizeConvexHull()">Visualize Convex Hull</button>
+            <input type="range" id="speed" name="speed" min="1" max="5" value="3">
+            <select id="colorHull">
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+            </select>
+            <select id="colorPoints">
+                <option value="black">Black</option>
+                <option value="gray">Gray</option>
+                <option value="white">White</option>
+            </select>
+            <button onclick="displayTotalPoints()">Total Points</button>
+            <button onclick="displayPointsInHull()">Points in Hull</button>
+        </div>
+        <svg id="visualization"></svg>
+    </div>
+
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="convexHull.js"></script>
+</body>
+</html>
