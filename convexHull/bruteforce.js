@@ -1,14 +1,13 @@
-var width = 600; // Define the width of the SVG visualization
-var height = 400; // Define the height of the SVG visualization
-var points = []; // Array to store the generated points
-var hull = []; // Array to store the convex hull points
-
-// Set the speed variable based on the initial value of the speed input
+// Variables to store width, height, points, hull, and speed
+var width = 1000;
+var height = 400;
+var points = [];
+var hull = [];
 var speed = parseInt(document.getElementById("speed").value) || 3;
 
-// Function to generate points
+// Function to generate random points
 function generatePoints() {
-    var numPoints = parseInt(document.getElementById("numPoints").value) || 100;
+    var numPoints = parseInt(document.getElementById("numPoints").value) || 10;
 
     points = [];
     for (let i = 0; i < numPoints; i++) {
@@ -16,18 +15,16 @@ function generatePoints() {
         let y = Math.random() * height;
         points.push({ x: x, y: y });
     }
-    visualizePoints(); // Call a function to visualize the generated points
+    visualizePoints();
 }
 
-// Function to visualize points
+// Function to visualize points on the SVG
 function visualizePoints() {
-    // Visualize the points
-    var colorPoints = d3.select("#colorPoints").node().value;
-
-    // Create an SVG and draw the points
     var svg = d3.select("#visualization")
         .attr("width", width)
         .attr("height", height);
+
+    svg.selectAll("circle").remove(); // Clear previous points
 
     svg.selectAll("circle")
         .data(points)
@@ -35,18 +32,47 @@ function visualizePoints() {
         .attr("r", 3)
         .attr("cx", function (d) { return d.x; })
         .attr("cy", function (d) { return d.y; })
-        .attr("fill", colorPoints);
+        .attr("fill", "black"); // Fixed color to black
 }
 
 // Function to visualize the convex hull
 function visualizeConvexHull() {
-    // Clear previous visualization
-    d3.select("#visualization").selectAll("*").remove();
+    d3.select("#visualization").selectAll("line").remove(); // Clear previous hull edges
 
     hull = bruteForceConvexHull(points);
 
-    // Visualize the convex hull
     visualizeHull();
+}
+
+// Function to visualize the convex hull on the SVG
+function visualizeHull() {
+    var svg = d3.select("#visualization")
+        .attr("width", width)
+        .attr("height", height);
+
+    svg.selectAll("circle").remove(); // Clear previous points
+
+    // Draw points
+    svg.selectAll("circle")
+        .data(points)
+        .enter().append("circle")
+        .attr("r", 3)
+        .attr("cx", function (d) { return d.x; })
+        .attr("cy", function (d) { return d.y; })
+        .attr("fill", "black"); // Fixed color to black
+
+    // Draw edges of the convex hull
+    svg.selectAll("line")
+        .data(hull)
+        .enter().append("line")
+        .attr("x1", function (d) { return d[0].x; })
+        .attr("y1", function (d) { return d[0].y; })
+        .attr("x2", function (d) { return d[1].x; })
+        .attr("y2", function (d) { return d[1].y; })
+        .style("stroke", "red"); // Fixed color to red
+
+    // Update the points in hull field
+    document.getElementById("pointsInHull").innerText = "Points in Hull: " + hull.length;
 }
 
 // Function for the brute-force convex hull
@@ -65,7 +91,19 @@ function bruteForceConvexHull(points) {
             for (let k = 0; k < points.length; k++) {
                 if (k != i && k != j) {
                     let x = points[k].x, y = points[k].y;
-                    if (!checkSameSide(x1, y1, x2, y2, x, y)) {
+                    let orientation = ccw(x1, y1, x2, y2, x, y);
+
+                    if (orientation === 0) {
+                        // Points are collinear, choose the one farthest from the line
+                        let dist1 = Math.hypot(x - x1, y - y1);
+                        let dist2 = Math.hypot(x - x2, y - y2);
+
+                        if (dist1 > dist2) {
+                            isHullEdge = false;
+                            break;
+                        }
+                    } else if (orientation < 0) {
+                        // Points are not on the same side
                         isHullEdge = false;
                         break;
                     }
@@ -82,43 +120,9 @@ function bruteForceConvexHull(points) {
     return hull;
 }
 
-// Function to check if points are on the same side
-function checkSameSide(x1, y1, x2, y2, x, y) {
-    let a = -(y2 - y1);
-    let b = x2 - x1;
-    let c = -(a * x1 + b * y1);
-    let d = a * x + b * y + c;
-
-    return d > 0;
-}
-
-// Function to visualize the hull
-function visualizeHull() {
-    var colorHull = d3.select("#colorHull").node().value;
-    var colorPoints = d3.select("#colorPoints").node().value;
-
-    // Create an SVG and draw the points
-    var svg = d3.select("#visualization")
-        .attr("width", width)
-        .attr("height", height);
-
-    svg.selectAll("circle")
-        .data(points)
-        .enter().append("circle")
-        .attr("r", 3)
-        .attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; })
-        .attr("fill", colorPoints);
-
-    // Draw the edges of the convex hull
-    svg.selectAll("line")
-        .data(hull)
-        .enter().append("line")
-        .attr("x1", function(d) { return d[0].x; })
-        .attr("y1", function(d) { return d[0].y; })
-        .attr("x2", function(d) { return d[1].x; })
-        .attr("y2", function(d) { return d[1].y; })
-        .style("stroke", colorHull);
+// CCW (Counter-Clockwise) orientation test
+function ccw(x1, y1, x2, y2, x, y) {
+    return (((x2 - x1) * (y - y1)) - ((x - x1) * (y2 - y1)));
 }
 
 // Update the speed variable when the speed input changes
@@ -126,9 +130,7 @@ document.getElementById("speed").addEventListener("input", function () {
     speed = parseInt(this.value) || 3;
 });
 
-// Function to display points within the convex hull
-function displayPointsInHull() {
-    console.log("Points within the convex hull: ", hull);
-}
+// Add event listeners for the buttons
+document.getElementById("generatePointsButton").addEventListener("click", generatePoints);
+document.getElementById("visualizeConvexHullButton").addEventListener("click", visualizeConvexHull);
 
-// ... (rest of the existing code)
