@@ -1,10 +1,21 @@
+#algo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: unset;
+    
+}
 #container {
     background-image: url(/convexHull/images/bg.png);
+    padding: 10;
 }
-text {
-    fill: black;
-}
-
 rect {
     fill: white;
+}
+#buttons {
+    padding: 10;
+    margin-top: 10;
+
 }

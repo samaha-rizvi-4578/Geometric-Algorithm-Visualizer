@@ -44,7 +44,6 @@ function visualizeConvexHull() {
     visualizeHull();
 }
 
-// Function to visualize the convex hull on the SVG
 function visualizeHull() {
     var svg = d3.select("#visualization")
         .attr("width", width)
@@ -71,11 +70,22 @@ function visualizeHull() {
         .attr("y2", function (d) { return d[1].y; })
         .style("stroke", "red"); // Fixed color to red
 
+    // Count the unique points in the hull
+    var uniquePoints = [];
+    hull.forEach(function (segment) {
+        uniquePoints.push(segment[0], segment[1]);
+    });
+
+    // Remove duplicate points
+    uniquePoints = uniquePoints.filter(function (value, index, self) {
+        return self.indexOf(value) === index;
+    });
+
     // Update the points in hull field
-    document.getElementById("pointsInHull").innerText = "Points in Hull: " + hull.length;
+    document.getElementById("pointsInHull").innerText = "Points in Hull: " + uniquePoints.length;
 }
 
-// Function for the brute-force convex hull
+
 function bruteForceConvexHull(points) {
     var hull = [];
 
@@ -93,16 +103,7 @@ function bruteForceConvexHull(points) {
                     let x = points[k].x, y = points[k].y;
                     let orientation = ccw(x1, y1, x2, y2, x, y);
 
-                    if (orientation === 0) {
-                        // Points are collinear, choose the one farthest from the line
-                        let dist1 = Math.hypot(x - x1, y - y1);
-                        let dist2 = Math.hypot(x - x2, y - y2);
-
-                        if (dist1 > dist2) {
-                            isHullEdge = false;
-                            break;
-                        }
-                    } else if (orientation < 0) {
+                    if (orientation > 0) {
                         // Points are not on the same side
                         isHullEdge = false;
                         break;
