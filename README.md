@@ -6,7 +6,6 @@
 ## Course: Design and Anaalysis of Algorithms
 
 
-till now graham scan and bruteforce have been applied
-the problem arising in both is that it is not generating a complete hul instead a half broken hull
-here is the image
+graham scan and jarvis march have been done ....to be continued
+
 
