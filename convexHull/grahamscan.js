@@ -133,8 +133,10 @@ function visualizeHull() {
         .attr("width", width)
         .attr("height", height);
 
-    //svg.selectAll("circle").remove(); // Clear previous points
-    clearPoints();   // Clear previous points
+    // Clear previous points and edges
+    svg.selectAll("circle").remove();
+    svg.selectAll("line").remove();
+
     // Draw points
     svg.selectAll("circle")
         .data(points)
@@ -142,29 +144,28 @@ function visualizeHull() {
         .attr("r", 3)
         .attr("cx", function (d) { return d.x; })
         .attr("cy", function (d) { return d.y; })
-        .attr("fill", "black"); // Fixed color to black
+        .attr("fill", "black");
 
     // Draw edges of the convex hull
-    svg.selectAll("line")
-        .data(hull)
-        .enter().append("line")
-        .attr("x1", function (d) { return d[0].x; })
-        .attr("y1", function (d) { return d[0].y; })
-        .attr("x2", function (d) { return d[1].x; })
-        .attr("y2", function (d) { return d[1].y; })
-        .style("stroke", "red"); // Fixed color to red
+    for (var i = 0; i < hull.length - 1; i++) {
+        svg.append("line")
+            .attr("x1", hull[i].x)
+            .attr("y1", hull[i].y)
+            .attr("x2", hull[i + 1].x)
+            .attr("y2", hull[i + 1].y)
+            .style("stroke", "red");
+    }
+
+    // Connect the last and first points to close the hull
+    svg.append("line")
+        .attr("x1", hull[hull.length - 1].x)
+        .attr("y1", hull[hull.length - 1].y)
+        .attr("x2", hull[0].x)
+        .attr("y2", hull[0].y)
+        .style("stroke", "red");
 
     // Count the unique points in the hull
-    var uniquePoints = [];
-    hull.forEach(function (segment) {
-        uniquePoints.push(segment[0], segment[1]);
-    });
-
-    // Remove duplicate points
-    // uniquePoints = uniquePoints.filter(function (value, index, self) {
-    //     return self.indexOf(value) === index;
-    // });
-    uniquePoints = createUniqueArray(uniquePoints);
+    var uniquePoints = createUniqueArray(hull);
 
     // Update the points in hull field
     document.getElementById("pointsInHull").innerText = "Points in Hull: " + uniquePoints.length;
@@ -175,8 +176,39 @@ function visualizeConvexHull() {
 
     hull = grahamScanConvexHull(points);
 
-    visualizeHull();
+    // Clear previous points and visualize them
+    visualizePoints();
+
+    // Visualize convex hull step by step with delays
+    visualizeConvexHullStepByStep(hull, 0);
 }
+
+function visualizeConvexHullStepByStep(hull, index) {
+    if (index < hull.length - 1) {
+        // Draw the current edge of the convex hull
+        visualizeHullSegment(hull[index], hull[index + 1]);
+
+        // Delay before moving to the next step
+        setTimeout(function () {
+            visualizeConvexHullStepByStep(hull, index + 1);
+        }, 1000 / speed); // Adjust the delay based on the specified speed
+    } else {
+        // Draw the last edge to close the convex hull
+        visualizeHullSegment(hull[hull.length - 1], hull[0]);
+    }
+}
+
+function visualizeHullSegment(point1, point2) {
+    var svg = d3.select("#visualization");
+
+    svg.append("line")
+        .attr("x1", point1.x)
+        .attr("y1", point1.y)
+        .attr("x2", point2.x)
+        .attr("y2", point2.y)
+        .style("stroke", "red");
+}
+
 
 
 // Update the speed variable when the speed input changes
