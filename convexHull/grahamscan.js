@@ -181,6 +181,7 @@ function visualizeConvexHull() {
 
     // Visualize convex hull step by step with delays
     visualizeConvexHullStepByStep(hull, 0);
+   
 }
 
 function visualizeConvexHullStepByStep(hull, index) {
@@ -196,6 +197,11 @@ function visualizeConvexHullStepByStep(hull, index) {
         // Draw the last edge to close the convex hull
         visualizeHullSegment(hull[hull.length - 1], hull[0]);
     }
+     // Count the unique points in the hull
+     var uniquePoints = createUniqueArray(hull);
+
+     // Update the points in hull field
+     document.getElementById("pointsInHull").innerText = "Points in Hull: " + uniquePoints.length;
 }
 
 function visualizeHullSegment(point1, point2) {

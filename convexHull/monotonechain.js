@@ -24,41 +24,10 @@ function isTooClose(newPoint, existingPoints, minDistance) {
     }
     return false;
 }
-
-
-function ccw(p, q, r) {
-    var val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
-    if (val >= 0) return false; 
-    return true;
-}
-
-function sortFunction(p1, p2) {
-    var o = polarAngle(points[0], p1) - polarAngle(points[0], p2);
-    if(o === 0) return distance(points[0], p1) - distance(points[0], p2); 
-    return o;
-}
-
-// Function to find the pivot (point with the lowest y-coordinate)
-function findPivot(points) {
-    let pivot = points[0];
-    for (let i = 1; i < points.length; i++) {
-        if (points[i].y < pivot.y || (points[i].y === pivot.y && points[i].x < pivot.x)) {
-            pivot = points[i];
-        }
-    }
-    return pivot;
-}
-
-// Function to calculate polar angle with respect to the pivot
-function polarAngle(pivot, point) {
-    return Math.atan2(point.y - pivot.y, point.x - pivot.x);
-}
-
 // Function to calculate the distance between two points
 function distance(point1, point2) {
     return Math.sqrt(((point1.x - point2.x) ** 2) + ((point1.y - point2.y) ** 2));
 }
-
 // Function to eliminate duplicates from an array of objects with x, y keys
 function createUniqueArray(array) {
     const keys = ['x', 'y'];
@@ -106,37 +75,44 @@ function generatePoints() {
     }
     visualizePoints();
 }
+function monotoneChainConvexHull(points) {
+    // Sort points lexicographically
+    points.sort(function(a, b) {
+        return a.x - b.x || a.y - b.y;
+    });
 
-function bruteForceConvexHull(points) {
-    var n = points.length;
-    if (n < 3) {
-        // Convex hull not possible with less than 3 points
-        return null;
+    // Build lower hull
+    var lowerHull = [];
+    for (var i = 0; i < points.length; i++) {
+        while (lowerHull.length >= 2 && orientation(lowerHull[lowerHull.length - 2], lowerHull[lowerHull.length - 1], points[i]) <= 0) {
+            lowerHull.pop();
+        }
+        lowerHull.push(points[i]);
     }
 
-    // Find the point with the lowest y-coordinate (and leftmost if ties)
-    var pivot = findPivot(points);
-
-    var hull = [];
-    var endpoint;
-
-    do {
-        hull.push(pivot);
-        endpoint = points[0];
-
-        for (var i = 1; i < n; i++) {
-            if (endpoint === pivot || ccw(pivot, endpoint, points[i]) > 0) {
-                endpoint = points[i];
-            }
+    // Build upper hull
+    var upperHull = [];
+    for (var i = points.length - 1; i >= 0; i--) {
+        while (upperHull.length >= 2 && orientation(upperHull[upperHull.length - 2], upperHull[upperHull.length - 1], points[i]) <= 0) {
+            upperHull.pop();
         }
+        upperHull.push(points[i]);
+    }
 
-        pivot = endpoint;
-    } while (endpoint !== hull[0]);
+    // Combine lower and upper hulls to form the convex hull
+    var convexHull = lowerHull.slice(0, lowerHull.length - 1).concat(upperHull.slice(0, upperHull.length - 1));
 
-    return hull;
+    return convexHull;
 }
 
+// Function to determine the orientation of three points (p, q, r)
+function orientation(p, q, r) {
+    var val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
+    if (val === 0) return 0;  // Collinear
+    return (val > 0) ? 1 : -1; // Clockwise or counterclockwise
+}
 
+//monotone logic ends here
 function visualizeHull() {
     var svg = d3.select("#visualization")
         .attr("width", width)
@@ -183,13 +159,14 @@ function visualizeHull() {
 function visualizeConvexHull() {
     d3.select("#visualization").selectAll("line").remove(); // Clear previous hull edges
 
-    hull = bruteForceConvexHull(points);
+    hull = monotoneChainConvexHull(points);
 
     // Clear previous points and visualize them
     visualizePoints();
 
     // Visualize convex hull step by step with delays
     visualizeConvexHullStepByStep(hull, 0);
+   
 }
 
 function visualizeConvexHullStepByStep(hull, index) {
@@ -205,6 +182,11 @@ function visualizeConvexHullStepByStep(hull, index) {
         // Draw the last edge to close the convex hull
         visualizeHullSegment(hull[hull.length - 1], hull[0]);
     }
+     // Count the unique points in the hull
+     var uniquePoints = createUniqueArray(hull);
+
+     // Update the points in hull field
+     document.getElementById("pointsInHull").innerText = "Points in Hull: " + uniquePoints.length;
 }
 
 function visualizeHullSegment(point1, point2) {
@@ -224,7 +206,6 @@ function visualizeHullSegment(point1, point2) {
 document.getElementById("speed").addEventListener("input", function () {
     speed = parseInt(this.value) || 3;
 });
-
 // Add event listeners for the buttons
 document.getElementById("generatePointsButton").addEventListener("click", generatePoints);
 document.getElementById("visualizeConvexHullButton").addEventListener("click", visualizeConvexHull);
