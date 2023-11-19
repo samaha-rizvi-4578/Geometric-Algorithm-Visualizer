@@ -13,23 +13,23 @@
 </head>
 
 <body>
-    <div class="jumbotron" id="algo">
-        <h1 class="display-4" id="heading">Graham Scan Convex Hull</h1>
+    <div id="algo">
+        <h2 class="display-4" id="heading">Graham Scan Convex Hull</h2>
         <hr class="my-4">
         <div class="container-fluid" id="container">
 
             <svg id="visualization" width="1000" height="400"></svg>
         </div>
         <div id="buttons">
-            <input type="number" class="btn btn-outline-secondary" id="numPoints" name="numPoints" min="1" max="500" value="10">
-            <button type="button" class="btn btn-outline-secondary" id="generatePointsButton"
+            <input type="number" class="btn btn-outline-light" id="numPoints" name="numPoints" min="1" max="50" value="10">
+            <button type="button" class="btn btn-outline-light" id="generatePointsButton"
                 onclick="generatePoints()">Generate Points</button>
                 
-            <button type="button" class="btn btn-outline-secondary" id="visualizeConvexHullButton"
+            <button type="button" class="btn btn-outline-light" id="visualizeConvexHullButton"
                 onclick="visualizeConvexHull()">Visualize Convex Hull</button>
 
             <input type="range" id="speed" name="speed" min="1" max="5" value="3">
-                <span id="pointsInHull" class="btn btn-outline-secondary"> Points in Hull: 0</span>
+                <span id="pointsInHull" class="btn btn-outline-light"> Points in Hull: 0</span>
             <button type="button" class="btn btn-outline-danger" onClick="window.location.reload();">Clear</button>
         </div>
     </div>

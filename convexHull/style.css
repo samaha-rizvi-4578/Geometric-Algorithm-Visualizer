@@ -1,3 +1,23 @@
+body {
+    padding: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #222;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 7px,
+      rgba(0, 0, 0, 0.8) 9px,
+      rgba(0, 0, 0, 0.8) 13px,
+      transparent 13px
+    );
+  }
+
+#container {
+    /* background-color: white; */
+    background-image: url(/convexHull/images/bg.png);
+}
 #algo {
     position: absolute;
     top: 0;
@@ -5,12 +25,12 @@
     width: 100%;
     height: 100%;
     background-position: unset;
-    
 }
-#container {
+
+/* #container {
     background-image: url(/convexHull/images/bg.png);
     padding: 10;
-}
+} */
 rect {
     fill: white;
 }
@@ -19,3 +39,158 @@ rect {
     margin-top: 10;
 
 }
+/* buttons style */
+.btn-outline-light {
+    color: #ff9800;
+    border-color: #ff9800;
+    background: black;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px; /* Add border radius */
+    margin: 10px; /* Add margin */
+}
+
+.btn-outline-light:hover {
+    color: #ff8d00;
+    border-color: #ff9800;
+    box-shadow: 0 0 10px #ff9800, 0 0 40px #ff9800, 0 0 80px #ff9800;
+}
+
+.btn-outline-light::before {
+    content: "";
+    display: block;
+    position: absolute;
+    background: #ff9800;
+    width: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-outline-light:hover::before {
+    width: 100%;
+}
+/*-----clear button styling-----*/
+.btn-outline-danger {
+    color: #ff2f00;
+    border-color: #ff1900;
+    background: black;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px; /* Add border radius */
+    margin: 10px; /* Add margin */
+}
+
+.btn-outline-danger:hover {
+    background: #fff;
+    color: #ff2f00;
+    border-color: #ff1900;
+    box-shadow: 0 0 10px #ff2f00, 0 0 40px #ff2f00, 0 0 80px #ff2f00;
+}
+
+.btn-outline-danger::before {
+    content: "";
+    display: block;
+    position: absolute;
+    background: #ff2f00;
+    width: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.2s ease-in-out;
+}
+.btn-outline-danger:hover::before {
+    width: 100%;
+}
+/*------speed neon effect---------*/
+#speed {
+    outline: none;
+    border: none;
+    background: none;
+    -webkit-appearance: none;
+    appearance: none;
+    color: #ff9800;
+    box-shadow: 0 0 5px #ff9800, 0 0 10px #ff9800, 0 0 15px #ff9800, 0 0 20px #ff4500, 0 0 30px #ff4500, 0 0 40px #ff4500;
+}
+
+#speed::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 10px;
+    background: #ff9800;
+    box-shadow: 0 0 5px #ff9800, 0 0 10px #ff9800, 0 0 15px #ff9800, 0 0 20px #ff4500, 0 0 30px #ff4500, 0 0 40px #ff4500;
+    border-radius: 50%;
+}
+/*------heading main neon effect*/
+@import url("https://fonts.googleapis.com/css?family=Sacramento&display=swap");
+
+h2 {
+  font-size: calc(16px + 14vh);
+  line-height: calc(20px + 20vh);
+/*   text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+    0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
+  color: #fccaff; */
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+    color: #fff6a9;
+  font-family: "Sacramento", cursive;
+  text-align: center;
+  animation: blink 12s infinite;
+  -webkit-animation: blink 12s infinite;
+}
+
+
+
+@-webkit-keyframes blink {
+  20%,
+  24%,
+  55% {
+    color: #111;
+    text-shadow: none;
+  }
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+/*     color: #fccaff;
+    text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+      0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+    color: #fff6a9;
+  }
+}
+
+@keyframes blink {
+  20%,
+  24%,
+  55% {
+    color: #111;
+    text-shadow: none;
+  }
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+/*     color: #fccaff;
+    text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+      0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+    color: #fff6a9;
+  }
+}
+
+

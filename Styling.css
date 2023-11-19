@@ -1,16 +1,241 @@
-.sh{
-    border: 2px solid;
-    background-color: #343A40;
-    display: flex;   
-    justify-content: center;
+
+body {
+  padding: 2vw;
+  font-family: "Times New Roman", Times, serif;
+  background: #222;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 7px,
+    rgba(0, 0, 0, 0.8) 9px,
+    rgba(0, 0, 0, 0.8) 13px,
+    transparent 13px
+  );
 }
 
-#contain{
-    padding: 20px;
-    background-color:rgb(21, 173, 165);
+/*------heading main neon effect*/
+@import url("https://fonts.googleapis.com/css?family=Sacramento&display=swap");
+
+h2 {
+  font-size: calc(16px + 14vh);
+  line-height: calc(20px + 20vh);
+/*   text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+    0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
+  color: #fccaff; */
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+    color: #fff6a9;
+  font-family: "Sacramento", cursive;
+  text-align: center;
+  animation: blink 12s infinite;
+  -webkit-animation: blink 12s infinite;
 }
 
-#heading{
-    text-align: center;
-    color:blanchedalmond;
+@-webkit-keyframes blink {
+  20%,
+  24%,
+  55% {
+    color: #111;
+    text-shadow: none;
+  }
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+/*     color: #fccaff;
+    text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+      0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+    color: #fff6a9;
+  }
+}
+
+@keyframes blink {
+  20%,
+  24%,
+  55% {
+    color: #111;
+    text-shadow: none;
+  }
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+/*     color: #fccaff;
+    text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+      0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+    color: #fff6a9;
+  }
+}
+
+/* styling for h4 */
+
+/* cards styling */
+
+
+.w3-card {
+  color: #ff9800;
+  border-color: #ff9800;
+  background: black;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px; /* Add border radius */
+  margin: 10px; /* Add margin */
+}
+
+.w3-card:hover {
+  color: #ff8d00;
+  border-color: #ff9800;
+  box-shadow: 0 0 10px #ff9800, 0 0 40px #ff9800, 0 0 80px #ff9800;
+}
+
+.w3-card::before {
+  content: "";
+  display: block;
+  position: absolute;
+  background: #ff9800;
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.2s ease-in-out;
+}
+
+.w3-card:hover::before {
+  width: 100%;
+}
+
+/* card buttons styling */
+
+
+.w3-button {
+  color: black; /* Initial font color */
+  border: 1px solid #ff9800; /* Orange border */
+  background: #fff6a9;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  
+}
+
+.w3-button:hover {
+  color: #ff8d00;
+  border-color: #ff9800;
+  box-shadow: 0 0 10px #ff9800, 0 0 40px #ff9800, 0 0 80px #ff9800;
+  border-radius: 10px; /* Add border radius */
+}
+
+.w3-button::before {
+  content: "";
+  display: block;
+  position: absolute;
+  background: #ff9800;
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.2s ease-in-out;
+}
+
+.w3-button:hover::before {
+  width: 100%;
+}
+
+
+/* navbar styling */
+.w3-bar {
+  color: #ff9800; /* Initial font color */
+  border: 2px solid #ff9800; /* Orange border */
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.w3-navbar-item {
+  color: #fff; /* Initial font color */
+  text-decoration: none !important; /* Remove underline */
+  text-transform: uppercase; /* Uppercase text */
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.w3-navbar-item:hover {
+  color: #fff;
+  border-color: #fff;
+  box-shadow: 0 0 10px #ff9800, 0 0 40px #ff9800, 0 0 80px #ff9800;
+  transform: scale(1.2);
+}
+
+.w3-navbar-item::before {
+  content: "";
+  display: block;
+  position: absolute;
+  background: #ff9800;
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.2s ease-in-out;
+}
+
+.w3-navbar-item:hover::before {
+  width: 100%;
+}
+
+/* footer styling */
+footer {
+  text-align: center;
+  color: #ff9800; /* Initial font color */
+  border: 2px solid #ff9800; /* Orange border */
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+
+}
+
+footer:hover {
+  color: #ff8d00;
+  border-color: #ff9800;
+  box-shadow: 0 0 10px #ff9800, 0 0 40px #ff9800, 0 0 80px #ff9800;
+}
+
+footer::before {
+  content: "";
+  display: block;
+  position: absolute;
+  background: #ff9800;
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.2s ease-in-out;
+}
+
+footer:hover::before {
+  width: 100%;
+}
+
+/* specidied text stylings */
+.orange-border-text {
+  font-family: 'Warnes', cursive;
+  font-size: 30px;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
 }
