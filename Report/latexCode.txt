@@ -1,0 +1,70 @@
+\documentclass[10pt,twocolumn]{article}
+
+% Packages
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float} % To control float positions
+\usepackage{enumitem} % For customizing lists
+\usepackage{lipsum} % For generating dummy text
+\usepackage{hyperref}
+
+% Document Settings
+\geometry{a4paper, margin=1in}
+\title{DESIGN AND ANALYSIS OF ALGORITHM PROJECT}
+\author{MEMBERS: K213377 Maria Qadir, K214578 Samaha Batool, K214987 Laiba Meer}
+
+\begin{document}
+\maketitle
+
+\section*{Abstract}
+This report presents the design and analysis of a geometric algorithm project. The focus is on implementing various geometric algorithms with different Big Oh complexities to address fundamental problems in computational geometry. The system allows users to specify the number of inputs, generating computer-generated points for algorithmic exploration. Emphasis is placed on a user-friendly interface with visually appealing and informative representations. The report details design, implementation steps, interface considerations, and insights into time and space complexities.
+
+\section*{Introduction}
+Geometric algorithms play a crucial role in computer science. This project concentrates on line segment intersection and convex hull construction, employing conventional and cutting-edge approaches. The primary goal is to create a user-friendly platform for interactive exploration of geometric algorithms.
+
+\section*{Programming Design}
+The web-based project employs HTML, CSS, and JavaScript to create an interactive interface for visualizing geometric algorithms. Users can select an algorithm, input the number of points, and observe the system generate and construct a convex hull. Implementation includes the d3.js library and Bootstrap framework for enhanced GUI, featuring neon effects for aesthetic appeal. Figure~\ref{fig:system-architecture} illustrates the system architecture, seamlessly integrating these components. JavaScript manages user interactions, algorithm execution, and visualization speed, ensuring a cohesive and visually engaging platform.
+\href{https://github.com/samaha-rizvi-4578/Geometric-Algorithm-Visualizer}{Click Here to See Code and Outputs}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{flowchartmaria.jpg}
+  \caption{System Architecture Flowchart}
+  \label{fig:system-architecture}
+\end{figure}
+
+\section*{Experimental Setup}
+The system accommodates user input for generating points, fostering interaction. The experimental setup records execution times, providing insights into convex hull computations and line intersection algorithms. This approach allows for quantitative and qualitative assessments of algorithm performance.
+
+\section*{Results and Discussion}
+Interface screenshots (Figures~\ref{fig:algorithm-step-1} and~\ref{fig:algorithm-step-2}) depict step-by-step algorithm execution. Execution time data is compared, providing insights into algorithm efficiency. Discussion delves into trade-offs, strengths, and weaknesses, aiding algorithm selection.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{screenshot1.png}
+  \caption{Algorithm Execution - Step 1}
+  \label{fig:algorithm-step-1}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{screenshot2.png}
+  \caption{Algorithm Execution - Step 2}
+  \label{fig:algorithm-step-2}
+\end{figure}
+
+\section*{Conclusion}
+\href{https://github.com/samaha-rizvi-4578/Geometric-Algorithm-Visualizer}{See Code}
+In summary, this project effectively utilizes HTML, CSS, and JavaScript to create a dynamic web-based platform for interactive exploration of geometric algorithms. The integration of the d3.js library and Bootstrap framework enhances the interface with neon effects, adding to its visual appeal. The experimental setup records execution times, offering valuable insights into algorithm efficiency. The project provides a user-friendly environment that combines aesthetic appeal with in-depth algorithmic analysis, contributing to a comprehensive understanding of geometric relationships through visual representations and quantitative measurements.
+
+\section*{References}
+Diverse references, such as research papers and documentation, were consulted to ensure the seamless and accurate functionality of this project. Relevant sources include:
+\begin{itemize}
+  \item \href{https://cp-algorithms.com/geometry/convex-hull.html}{cp-algorithms.com/geometry/convex-hull}
+  \item \href{https://github.com/pgkelley4/line-segments-intersect}{github.com/pgkelley4/line-segments-intersect}
+  \item \href{https://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect/565282#565282}{stackoverflow.com}
+  \item \href{https://devdocs.io/javascript/}{devdocs.io/javascript/}
+  \item \href{https://www.w3schools.com/html/html_css.asp}{w3schools.com}
+\end{itemize}
+
+\end{document}
