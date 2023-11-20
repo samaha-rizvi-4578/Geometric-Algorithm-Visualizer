@@ -28,6 +28,7 @@
     <a href="intersection.html" class="w3-bar-item w3-navbar-item">Line Intersection</a>
     <a href="About.html" class="w3-bar-item w3-navbar-item">Credits</a>
 </div>
+    
     <!-- Header -->
     <header class="w3-container w3-theme w3-padding" id="myHeader" style="min-height:300px">
         <!-- <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i>  -->
@@ -39,51 +40,47 @@
         </div>
     </header>
     <div class="w3-row-padding w3-center w3-margin-top w3-margin-bottom">
-        
         <div class="w3-half">
             <div class="w3-card w3-container" style="min-height:460px">
-                <h3>Graham Scan</h3>
+                <h3>Polygon Approach</h3>
                 <br>
-                <img src="/convexHull/images/hull3.png" height="200px" width="400px">
-                <p>Choose point p with smallest y-coordinate.</p>
-                <p>Sort points by polar angle with p to get simple polygon.</p>
-                <p>Consider points in order, and discard those that
-                    would create a clockwise turn.</p>
-                <p>Time Complexity: O(N log N) for sort and O(N) for rest.</p>
-                <p><a href="/convexHull/grahamScan.html"><button class="w3-button w3-theme">Click Here to Get Started</button></a></p>
+                <img src="/intersection/images/1.png" height="200px" width="400px">
+                <p>Break each line into line segments, forming a polygon.</p>
+                <p>Find the intersection point within the polygon.</p>  
+                <p>Algorithms like the even-odd rule or winding number algorithm, can be used to determine if a point is inside the polygon.</p>
+                <p>Time Complexity:O(N) </p>
+                <p><a href="/intersection/polygon.html"><button class="w3-button w3-theme">Click Here to Get Started</button></a></p>
             </div>
         </div>
         <div class="w3-half">
             <div class="w3-card w3-container" style="min-height:460px">
-                <h3>Quick Hull</h3>
+                <h3>Determinant Approach</h3>
                 <br>
-                <img src="/convexHull/images/hull4.png" height="200px" width="400px">
-                <p>Choose a quadrilateral Q or rectangle R with 4 points as corners.</p>
-                <p>Any point inside cannot be on hull</p>
-                 <p>4 ccw tests for quadrilateral. 4 comparisons for rectangle</p>
-                 <p>Time Complexity: O(N^t)</p>
-                <p><a href="/convexHull/quickHull.html"><button class="w3-button w3-theme">Click Here to Get Started</button></a></p>
+                <img src="/intersection/images/2.png" height="200px" width="400px">
+                <p>Approach :two lines in a 2D space intersect if and only if their determinants are not equal, and the lines are not parallel.</p>
+                <p>Given two lines with equation a2x + b2y =c1 and a2x + b2y =c2</p>
+                <p>Calculate determinant with the help of coefficient matrix : D = a1b2 - a2b1</p>
+                <p>If D != 0, Lines intersects at a point</p>
+                <p>To calculate point of intersection, use Cramer's Rule</p>
+                <p>Time Complexity:O(1)</p>
+                <p><a href="/intersection/determinant.html"><button class="w3-button w3-theme">Click Here to Get Started</button></a></p>
             </div>
         </div>
         <div class="w3-half">
             <div class="w3-card w3-container" style="min-height:460px">
-                <h3>Monotone Chain</h3>
+                <h3>Parametric Approach</h3>
                 <br>
-                <img src="/convexHull/images/hull5.png" height="200px" width="400px">
-                <p>Find leftmost (A) and rightmost (B) points, A with lowest Y and B with highest Y.</p>
-                <p>Draw line AB to split points into sets S1 (above) and S2 (below).</p>
-                <p>Sort points by x-coordinate</p>
-                <p>Add points to S1 if clockwise oriented to the line between A and the current point.
-                    Add points to S2 if counterclockwise oriented to the line between A and the current point.</p>
-                    <p>Time Complexity: Sorting O(n log n); Hull O(N)</p>
-                <p><a href="/convexHull/MonotoneChain.html"><button class="w3-button w3-theme">Click Here to Get Started</button></a></p>
+                <img src="/intersection/images/3.png" height="200px" width="400px">
+                <p>In 2D, Solves a system of linear equations in constant time.</p>
+                <p>As it moves to higher dimensions (3D, 4D, etc.),the time complexity can become linear in the number of dimensions.</p>
+                <p>Time Complexity: O(1) for 2D & O(n) for 3D</p>
+                <p><a href="/intersection/parametric.html"><button class="w3-button w3-theme">Click Here to Get Started</button></a></p>
             </div>
         </div>
 
     </div>
     <br>
     <br>
-    <!-- Footer -->
      <!-- Footer -->
      <footer class="w3-container w3-theme-dark w3-padding-16">
         <h3 class="orange-border-text">Credits:</h3>
