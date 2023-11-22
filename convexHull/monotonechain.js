@@ -38,7 +38,43 @@ function createUniqueArray(array) {
     );
     return filteredArray;
 }
+// Function to handle file upload
+function handleFileUpload() {
+    var fileInput = document.getElementById("uploadFile");
+    var file = fileInput.files[0];
 
+    if (file) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            // Parse CSV data and update points array
+            points = parseCSV(e.target.result);
+            visualizePoints();
+        };
+        reader.readAsText(file);
+    }
+}
+
+// Function to parse CSV data and extract points
+function parseCSV(csvData) {
+    var lines = csvData.split("\n");
+    var parsedPoints = [];
+
+    for (var i = 0; i < lines.length; i++) {
+        var values = lines[i].split(",");
+        if (values.length === 2) {
+            var x = parseFloat(values[0]);
+            var y = parseFloat(values[1]);
+            if (!isNaN(x) && !isNaN(y)) {
+                parsedPoints.push({ x: x, y: y });
+            }
+        }
+    }
+
+    return parsedPoints;
+}
+
+// Event listener for file upload button
+document.getElementById("uploadButton").addEventListener("click", handleFileUpload);
 // Function to visualize points on the SVG
 function visualizePoints() {
     var svg = d3.select("#visualization")

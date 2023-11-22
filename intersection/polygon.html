@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Polygon Method</title>
+    <title>Contain Method</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -13,21 +13,21 @@
 </head>
 
 <body>
-    <div class="jumbotron" id="algo">
-        <h1 class="display-4" id="heading">Polygon Method for Line Intersection</h1>
+    <div  id="algo">
+        <h2 class="display-4" id="heading">Polygon Method for Line Intersection</h2>
         <hr class="my-4">
         <div class="container-fluid" id="container">
 
             <svg id="visualization" width="1000" height="400"></svg>
         </div>
         <div id="buttons">
-            <input type="number" class="btn btn-outline-secondary" id="numPoints" placeholder="Enter number of points">
             
-            <button type="button" class="btn btn-outline-secondary" id="generatePointsButton"
-            onclick="generatePoints()">Generate Points</button>
-            <button type="button" class="btn btn-outline-secondary" id="generatePolygonbutton"
-            onclick="visualizePolygon()">Generate Polygon</button>
-            <button type="button" class="btn btn-outline-danger" onclick="clearVisualization()">Clear</button>
+            <button type="button" class="btn btn-outline-light" id="generatePointsButton"
+            onclick="generateAndVisualizeLines()">Generate Lines</button>
+            <!-- //<button type="button" class="btn btn-outline-secondary" id="generatePolygonbutton"
+            onclick="visualizeIntersection()">Visualize Points</button> -->
+            <!-- <button type="button" class="btn btn-outline-danger" onclick="clearVisualization()">Clear</button> -->
+            <button type="button" class="btn btn-outline-danger" onClick="window.location.reload();">Clear</button>
 
      </div>
      <div id="result"></div>

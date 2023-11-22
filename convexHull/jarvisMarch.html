@@ -21,6 +21,8 @@
             <svg id="visualization" width="1000" height="400"></svg>
         </div>
         <div id="buttons">
+            <input type="file" class="btn btn-outline-light" id="uploadFile" accept=".csv">
+            <button type="button" class="btn btn-outline-light" id="uploadButton">Upload CSV</button>
             <input type="number" class="btn btn-outline-light" id="numPoints" name="numPoints" min="1" max="50" value="10">
             <button type="button" class="btn btn-outline-light" id="generatePointsButton"
                 onclick="generatePoints()">Generate Points</button>

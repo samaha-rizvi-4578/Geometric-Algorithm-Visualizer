@@ -10,11 +10,14 @@ function generateLines() {
     visualizeLines(lines);
     const intersectionPoint = findIntersectionPoint(lines);
     if (intersectionPoint) {
-        document.getElementById("result").innerText = "Intersection Point: ( " + intersectionPoint + ")";
+        // Round the coordinates to one decimal place
+        const roundedIntersectionPoint = intersectionPoint.map(coord => coord.map(c => c.toFixed(1)));
+        document.getElementById("result").innerText = "Intersection Point: ( " + roundedIntersectionPoint + ")";
     } else {
         document.getElementById("result").innerText = "Lines Segments are Not Intersecting";
     }
 }
+
 
 function visualizeLines(lines) {
     const svg = d3.select("#visualization");

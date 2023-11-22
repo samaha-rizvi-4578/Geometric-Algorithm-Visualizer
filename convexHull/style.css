@@ -48,7 +48,7 @@ rect {
     position: relative;
     overflow: hidden;
     border-radius: 5px; /* Add border radius */
-    margin: 10px; /* Add margin */
+    margin: 5px; /* Add margin */
 }
 
 .btn-outline-light:hover {
@@ -126,6 +126,7 @@ rect {
     box-shadow: 0 0 5px #ff9800, 0 0 10px #ff9800, 0 0 15px #ff9800, 0 0 20px #ff4500, 0 0 30px #ff4500, 0 0 40px #ff4500;
     border-radius: 50%;
 }
+
 /*------heading main neon effect*/
 @import url("https://fonts.googleapis.com/css?family=Sacramento&display=swap");
 
