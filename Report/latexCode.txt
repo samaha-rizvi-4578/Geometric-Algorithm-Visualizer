@@ -28,7 +28,7 @@ The web-based project employs HTML, CSS, and JavaScript to create an interactive
 \href{https://github.com/samaha-rizvi-4578/Geometric-Algorithm-Visualizer}{Click Here to See Code and Outputs}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\linewidth]{flowchartmaria.jpg}
+  \includegraphics[width=\linewidth]{systemflow.jpg}
   \caption{System Architecture Flowchart}
   \label{fig:system-architecture}
 \end{figure}
@@ -37,24 +37,27 @@ The web-based project employs HTML, CSS, and JavaScript to create an interactive
 The system accommodates user input for generating points, fostering interaction. The experimental setup records execution times, providing insights into convex hull computations and line intersection algorithms. This approach allows for quantitative and qualitative assessments of algorithm performance.
 
 \section*{Results and Discussion}
-Interface screenshots (Figures~\ref{fig:algorithm-step-1} and~\ref{fig:algorithm-step-2}) depict step-by-step algorithm execution. Execution time data is compared, providing insights into algorithm efficiency. Discussion delves into trade-offs, strengths, and weaknesses, aiding algorithm selection.
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\linewidth]{screenshot1.png}
-  \caption{Algorithm Execution - Step 1}
-  \label{fig:algorithm-step-1}
+Interface screenshots (Figures~\ref{fig:convex} and~\ref{fig:intersection}) depict step-by-step algorithm execution. Execution time data is compared, providing insights into algorithm efficiency. Discussion delves into trade-offs, strengths, and weaknesses, aiding algorithm selection.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{image.png}
+    \caption{Home Page}
+    \label{fig:home}
 \end{figure}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\linewidth]{screenshot2.png}
-  \caption{Algorithm Execution - Step 2}
-  \label{fig:algorithm-step-2}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{image1.png}
+    \caption{convex hull }
+    \label{fig:convex}
 \end{figure}
-
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{image2.png}
+    \caption{Line Intersection}
+    \label{fig:intersection}
+\end{figure}
 \section*{Conclusion}
-\href{https://github.com/samaha-rizvi-4578/Geometric-Algorithm-Visualizer}{See Code}
+\href{https://github.com/samaha-rizvi-4578/Geometric-Algorithm-Visualizer}{See Code and detailed outputs}
 In summary, this project effectively utilizes HTML, CSS, and JavaScript to create a dynamic web-based platform for interactive exploration of geometric algorithms. The integration of the d3.js library and Bootstrap framework enhances the interface with neon effects, adding to its visual appeal. The experimental setup records execution times, offering valuable insights into algorithm efficiency. The project provides a user-friendly environment that combines aesthetic appeal with in-depth algorithmic analysis, contributing to a comprehensive understanding of geometric relationships through visual representations and quantitative measurements.
 
 \section*{References}
